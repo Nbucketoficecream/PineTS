@@ -278,8 +278,6 @@ switch (order.type) {
                 ? closePrice
                 : openPrice;
         break;
-}
-
             case 'limit':
                 // Limit orders fill when price reaches the limit level
                 if (order.limit !== undefined) {
