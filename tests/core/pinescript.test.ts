@@ -8,8 +8,8 @@ import { deepEqual } from '../compatibility/lib/serializer';
 
 describe('PineScript Language', () => {
     it('History', async () => {
-        //const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 5000, new Date('Aug 17 2017').getTime(), new Date('Nov 25 2025').getTime());
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        //const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 5000, new Date('Aug 17 2017').getTime(), Date.UTC(2025, 10, 25));
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -39,8 +39,8 @@ describe('PineScript Language', () => {
         expect(context.result).toEqual(expected);
     });
     it('Compound Assignment', async () => {
-        //const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 5000, new Date('Aug 17 2017').getTime(), new Date('Nov 25 2025').getTime());
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        //const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 5000, new Date('Aug 17 2017').getTime(), Date.UTC(2025, 10, 25));
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -79,7 +79,7 @@ describe('PineScript Language', () => {
 
     // Category 1: Variable Declarations and Types
     it('Variable Declaration Types (var, let, const)', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -173,7 +173,7 @@ describe('PineScript Language', () => {
     });
 
     it('Variable Type Inference', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -230,7 +230,7 @@ describe('PineScript Language', () => {
     });
 
     it('Variable Initialization with Default Values', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -284,7 +284,7 @@ describe('PineScript Language', () => {
     });
 
     it('Variable Reassignment', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -324,7 +324,7 @@ describe('PineScript Language', () => {
 
     // Category 2: Variable Scoping
     it('Global Scope Variables', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -359,7 +359,7 @@ describe('PineScript Language', () => {
     });
 
     it('Block Scope Isolation', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -396,7 +396,7 @@ describe('PineScript Language', () => {
     });
 
     it('Variable Shadowing', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -430,7 +430,7 @@ describe('PineScript Language', () => {
     });
 
     it('Function Parameter Scope', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -465,7 +465,7 @@ describe('PineScript Language', () => {
     });
 
     it('Nested Scope Variable Access', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -500,7 +500,7 @@ describe('PineScript Language', () => {
 
     // Category 3: History Access and Series Behavior
     it('History Access with Literal Index', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -535,7 +535,7 @@ describe('PineScript Language', () => {
     });
 
     it('History Access with Variable Index', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -568,7 +568,7 @@ describe('PineScript Language', () => {
     });
 
     it('History Access with Nested Index', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -601,7 +601,7 @@ describe('PineScript Language', () => {
     });
 
     it('History Access Edge Cases', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -639,7 +639,7 @@ describe('PineScript Language', () => {
     });
 
     it('Series Initialization on First Bar', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -671,7 +671,7 @@ describe('PineScript Language', () => {
 
     // Category 4: Operators - Arithmetic
     it('Arithmetic Operators', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -701,7 +701,7 @@ describe('PineScript Language', () => {
     });
 
     it('Comparison Operators', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -806,7 +806,7 @@ describe('PineScript Language', () => {
     });
 
     it('Logical Operators', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -882,7 +882,7 @@ describe('PineScript Language', () => {
 
     // Category 5: Operators - Advanced
     it('Ternary Operator', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -912,7 +912,7 @@ describe('PineScript Language', () => {
     });
 
     it('Unary Operators', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -945,7 +945,7 @@ describe('PineScript Language', () => {
     });
 
     it('Compound Assignment Operators', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -993,7 +993,7 @@ describe('PineScript Language', () => {
     });
 
     it('Operator Precedence', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1026,7 +1026,7 @@ describe('PineScript Language', () => {
     });
 
     it('NaN Comparisons', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1061,7 +1061,7 @@ describe('PineScript Language', () => {
     });
 
     it('Short-Circuit Evaluation', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1116,7 +1116,7 @@ describe('PineScript Language', () => {
 
     // Category 6: Control Flow - Conditionals
     it('If Statement', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1146,7 +1146,7 @@ describe('PineScript Language', () => {
     });
 
     it('If-Else Statement', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1178,7 +1178,7 @@ describe('PineScript Language', () => {
     });
 
     it('If-Else If-Else Chain', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1214,7 +1214,7 @@ describe('PineScript Language', () => {
     });
 
     it('Nested If Statements', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1250,7 +1250,7 @@ describe('PineScript Language', () => {
     });
 
     it('Ternary Operator as Expression', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1281,7 +1281,7 @@ describe('PineScript Language', () => {
 
     // Category 7: Control Flow - Switch
     it('Switch Statement', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1321,7 +1321,7 @@ describe('PineScript Language', () => {
 
     // Category 8: Loops - For Loops
     it('For Loop with Literal Range', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1351,7 +1351,7 @@ describe('PineScript Language', () => {
     });
 
     it('For Loop with Series Range', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1385,7 +1385,7 @@ describe('PineScript Language', () => {
     });
 
     it('For Loop Variable Scope', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1450,7 +1450,7 @@ describe('PineScript Language', () => {
     });
 
     it('Nested For Loops', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1483,7 +1483,7 @@ describe('PineScript Language', () => {
 
     // Category 9: Loops - While and Control
     it('While Loop', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1515,7 +1515,7 @@ describe('PineScript Language', () => {
     });
 
     it('Break Statement', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1548,7 +1548,7 @@ describe('PineScript Language', () => {
     });
 
     it('Continue Statement', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1582,7 +1582,7 @@ describe('PineScript Language', () => {
 
     // Category 10: Functions
     it('Function Definition', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1613,7 +1613,7 @@ describe('PineScript Language', () => {
     });
 
     it('Function Call with Literal Arguments', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1644,7 +1644,7 @@ describe('PineScript Language', () => {
     });
 
     it('Function Call with Series Arguments', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1678,7 +1678,7 @@ describe('PineScript Language', () => {
     });
 
     it('Function Return Values', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1719,7 +1719,7 @@ describe('PineScript Language', () => {
     });
 
     it('Function Parameter History Access', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1756,7 +1756,7 @@ describe('PineScript Language', () => {
 
     it.skip('Recursive Functions', async () => {
         // Skipped: Recursive functions may not be fully supported by the transpiler
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1783,7 +1783,7 @@ describe('PineScript Language', () => {
     });
 
     it('Function Scope Variables', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1819,7 +1819,7 @@ describe('PineScript Language', () => {
     });
 
     it('Default Parameter Values', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1853,7 +1853,7 @@ describe('PineScript Language', () => {
     });
 
     it('Multiple Return Statements', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1892,7 +1892,7 @@ describe('PineScript Language', () => {
     // Category 11: Arrays and Destructuring
     it.skip('Array Creation', async () => {
         // Skipped: Array variables may not be properly handled as series by transpiler
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1915,7 +1915,7 @@ describe('PineScript Language', () => {
     });
 
     it('Array Indexing', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1954,7 +1954,7 @@ describe('PineScript Language', () => {
     });
 
     it('Array Assignment', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -1986,7 +1986,7 @@ describe('PineScript Language', () => {
     });
 
     it('Array Destructuring', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2020,7 +2020,7 @@ describe('PineScript Language', () => {
 
     it.skip('Array History Access', async () => {
         // Skipped: Array variables may not be properly handled as series by transpiler
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2045,7 +2045,7 @@ describe('PineScript Language', () => {
 
     // Category 12: Type System and Conversions
     it('Type Coercion', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2076,7 +2076,7 @@ describe('PineScript Language', () => {
     });
 
     it('NaN and na Handling', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2114,7 +2114,7 @@ describe('PineScript Language', () => {
     });
 
     it('Null and Undefined Handling', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2146,7 +2146,7 @@ describe('PineScript Language', () => {
     });
 
     it('Boolean Conversion', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2203,7 +2203,7 @@ describe('PineScript Language', () => {
     });
 
     it('String Operations', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2278,7 +2278,7 @@ describe('PineScript Language', () => {
 
     // Category 13: Expression Evaluation
     it('Nested Expressions', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2310,7 +2310,7 @@ describe('PineScript Language', () => {
     });
 
     it('Expression Side Effects', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2340,7 +2340,7 @@ describe('PineScript Language', () => {
     });
 
     it('Parentheses Precedence', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2370,7 +2370,7 @@ describe('PineScript Language', () => {
     });
 
     it('Conditional Assignment Patterns', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2404,7 +2404,7 @@ describe('PineScript Language', () => {
 
     // Category 14: Edge Cases and Special Behaviors
     it('Empty Blocks', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2438,7 +2438,7 @@ describe('PineScript Language', () => {
     });
 
     it('Variable Used Before Initialization', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         try {
             const context = await pineTS.run(async (context) => {
                 const { open, close, high, low, hlc3 } = context.data;
@@ -2461,7 +2461,7 @@ describe('PineScript Language', () => {
     });
 
     it('Circular Dependencies', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         try {
             const context = await pineTS.run(async (context) => {
                 const { open, close, high, low, hlc3 } = context.data;
@@ -2486,7 +2486,7 @@ describe('PineScript Language', () => {
     });
 
     it('Multiple Assignments in Sequence', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2523,7 +2523,7 @@ describe('PineScript Language', () => {
     });
 
     it('Series Length Consistency', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2560,7 +2560,7 @@ describe('PineScript Language', () => {
     });
 
     it('First Bar Special Handling', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2594,7 +2594,7 @@ describe('PineScript Language', () => {
     });
 
     it('Bar-by-Bar Execution', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2626,7 +2626,7 @@ describe('PineScript Language', () => {
     });
 
     it('Operator Precedence Complex', async () => {
-        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, new Date('Sep 20 2025').getTime(), new Date('Nov 25 2025').getTime());
+        const pineTS = new PineTS(Provider.Binance, 'BTCUSDT', '4H', 20, Date.UTC(2025, 8, 20), Date.UTC(2025, 10, 25));
         const context = await pineTS.run(async (context) => {
             const { open, close, high, low, hlc3 } = context.data;
             const ta = context.ta;
@@ -2650,7 +2650,7 @@ describe('PineScript Language', () => {
         console.log('>>> TEST: Operator Precedence Complex');
         console.log('>>> result: ', context.result);
 
-        // RC2b (Pine int/int → int): `5 / 2` is integer division (= 2, not 2.5),
+        // RC2b (Pine int/int ??int): `5 / 2` is integer division (= 2, not 2.5),
         // so complex1 = 2 + 3*4 - 5/2 = 2 + 12 - 2 = 12; and complex2 =
         // ((2+3)*(4-5))/2 = -5/2 = -2 (truncated toward zero, not -2.5).
         const expected = {
