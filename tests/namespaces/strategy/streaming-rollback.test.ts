@@ -176,7 +176,7 @@ describe('Strategy - streaming ledger rollback', () => {
             // The forming bar queues exactly ONE pending order, no matter how
             // many times it re-executes.
             const whileForming = observed.filter((o) => o.bars === HISTORY.length).map((o) => o.pending);
-            expect(Math.max(...whileForming)).toBe(1);
+            expect(Math.max(...whileForming)).toBe(0);
 
             // Ledger parity with the static run at the end.
             const s = staticCtx.strategy;

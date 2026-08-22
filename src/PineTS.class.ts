@@ -1190,13 +1190,19 @@ export class PineTS {
                 if (adverseFirst) processMarginCall(context, 'extreme');
                 processExitOrders(context, 'intrabar');
                 if (!adverseFirst) processMarginCall(context, 'extreme');
-                // Latch max_drawdown / max_runup ONCE at the end of the bar so
-                // trades closed mid-bar by TP / SL contribute their realized
-                // P&L (not phantom intra-bar excursions against the raw H/L).
-                finalizeStrategyBar(context);
             }
 
             const result = await transpiledFn(context);
+
+            // Execute market orders emitted by this bar's signal immediately
+            // at its close. Conditional exit orders remain evaluated at the
+            // start of subsequent bars.
+            if (context.strategy) {
+                processStrategyOrders(context, true);
+                // Latch max_drawdown / max_runup after both intrabar exits and
+                // entries settled at this bar's close have updated the ledger.
+                finalizeStrategyBar(context);
+            }
 
             //collect results
             if (typeof result === 'object') {

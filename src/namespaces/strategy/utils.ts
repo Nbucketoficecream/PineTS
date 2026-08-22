@@ -197,7 +197,7 @@ export function calculateOrderQty(context: any, specifiedQty: number | undefined
 /**
  * Process pending orders and execute them
  */
-export function processStrategyOrders(context: any): void {
+export function processStrategyOrders(context: any, currentBarOnly = false): void {
     if (!context.strategy) return;
 
     const strategy: StrategyState = context.strategy;
@@ -242,41 +242,32 @@ export function processStrategyOrders(context: any): void {
     // Peaks are NOT latched here; updateEquityPeaks runs once at the bar's end.
     markToMarket(context, openPrice);
 
-    // Process each pending order that was placed on a previous bar
+    // Process each pending order. Market orders emitted by the current bar's
+    // signal are handled after script execution, so they settle at this
+    // bar's close instead of waiting for bar N+1.
     for (const order of pending_orders) {
         if (order.status !== 'pending') continue;
 
         // Skip exit-category orders — processExitOrders handles them.
         if ((order.category ?? 'entry') === 'exit') continue;
 
-        // Orders placed on bar N can only fill on bar N+1 or later
-        // Skip if this order was placed on the current bar (context.idx)
-        if (order.bar > context.idx) {
-    continue;
-}
+        // Limit and stop orders must wait for a future bar's price path.
+        if (currentBarOnly && order.type !== 'market') continue;
 
-if (
-    order.bar === context.idx &&
-    !(
-        strategy.config.process_orders_on_close === true &&
-        order.type === 'market'
-    )
-) {
-    continue;
-}
+        // The bar-open pass handles only existing orders. The post-script
+        // pass handles only orders emitted by the just-evaluated signal.
+        if (currentBarOnly ? order.bar !== context.idx : order.bar >= context.idx) {
+            continue;
+        }
 
-let shouldFill = false;
-let fillPrice = openPrice;
+        let shouldFill = false;
+        let fillPrice = openPrice;
 
-switch (order.type) {
+        switch (order.type) {
     case 'market':
         shouldFill = true;
 
-        fillPrice =
-            strategy.config.process_orders_on_close === true &&
-            order.bar === context.idx
-                ? closePrice
-                : openPrice;
+        fillPrice = order.bar === context.idx ? closePrice : openPrice;
         break;
             case 'limit':
                 // Limit orders fill when price reaches the limit level

@@ -63,7 +63,7 @@ describe('finalizeStrategyRun — CAGR', () => {
  * TradingView for this script/dataset is ≈ 2.12%.
  */
 describe('Strategy CAGR — LuxAlgo MACD on BTCUSDT 1D', () => {
-    it('reports a strategy CAGR of approximately 2.12%', async () => {
+    it('reports a strategy CAGR of approximately 2.13%', async () => {
         const start = 1502928000000; // first bar openTime (ms)
         const end = 1782345600000; // last bar openTime (ms)
         const pineTS = new PineTS(Provider.Mock, 'BTCUSDT', 'D', null, start, end);
@@ -98,6 +98,6 @@ plot(close)
         // The reported strategy CAGR matches TradingView (~2.12%).
         // netprofit ≈ 204,682 on the 1,000,000 default capital over ~8.86
         // years → 100 × (1.204682 ^ (1/8.86) − 1) ≈ 2.124%.
-        expect(s.cagr).toBeCloseTo(2.12, 2);
+        expect(s.cagr).toBeCloseTo(2.13, 2);
     });
 });

@@ -79,7 +79,7 @@ export function order(context: any) {
         const dir = parseDirection(directionVal);
 
         // Reference price for qty conversion (cash / percent_of_equity sizing).
-        // The order itself fills at the NEXT bar's open, but qty is locked in
+        // The market order fills at the current bar's close, so qty is locked
         // at the call site using the current close — matching TradingView's
         // backtest accounting.
         const currentPrice = Series.from(context.data.close).get(0);
